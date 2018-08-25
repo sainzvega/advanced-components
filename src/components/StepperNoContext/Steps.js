@@ -1,7 +1,7 @@
 import React from 'react';
 import { Power2, TweenLite } from 'gsap';
-import { TransitionGroup, CSSTransition, Transition } from 'react-transition-group';
-import styles from '../styles';
+import { TransitionGroup, Transition } from 'react-transition-group';
+import styles from './styles';
 
 export const Step = ({ num, text }) => (
   <div key={num} style={styles.stageContent}>

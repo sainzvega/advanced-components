@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../styles';
+import styles from './styles';
 
 export const Stage = ({ stage, num }) => <div style={circleStyle(stage, num)}>{num}</div>;
 

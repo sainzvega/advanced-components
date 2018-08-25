@@ -1,12 +1,7 @@
 import React from 'react';
 import Progress, { Stage } from './Progress';
 import Steps, { Step } from './Steps';
-import styles from '../styles';
-
-/*
-NOTE: This component was recreated following this tutorial to understand how compund components are used. 
-https://itnext.io/using-advanced-design-patterns-to-create-flexible-and-reusable-react-components-part-1-dd495fa1823
-*/
+import styles from './styles';
 
 class Stepper extends React.Component {
   static Progress = Progress;

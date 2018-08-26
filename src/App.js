@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './examples/Home';
 import CompoundComponent from './examples/CompoundComponent';
+import CompoundComponentWithContext from './examples/CompoundComponentWithContext';
 
 class App extends Component {
   render() {
@@ -10,7 +11,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/compoundcomponent" component={CompoundComponent} />
-          <Route path="/compoundcomponentcontext" component={() => (<div>Not Yet Implemented</div>)} />
+          <Route path="/compoundcomponentcontext" component={CompoundComponentWithContext} />
         </Switch>
       </Router>
     );

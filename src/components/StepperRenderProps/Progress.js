@@ -12,12 +12,8 @@ const circleStyle = (current, circleSection) => {
   return styles.circle;
 };
 
-const Progress = ({ stage, children }) => {
-  const mappedChildren = React.Children.map(children, child => {
-    return React.cloneElement(child, { stage });
-  });
-
-  return <div style={styles.progressContainer}>{mappedChildren}</div>;
+const Progress = ({ children }) => {
+  return <div style={styles.progressContainer}>{children}</div>;
 };
 
 export default Progress;

@@ -12,7 +12,9 @@ const Home = () => (
       Most of these components are created based on examples/articles/videos/etc. that show how to use some react
       patterns. I simply adopted them and customized them for my own study
     </p>
-    <p>I have attached links to the relevant documents that the components are based on in the component source code.</p>
+    <p>
+      I have attached links to the relevant documents that the components are based on in the component source code.
+    </p>
 
     <h3>Examples</h3>
     <ul>
@@ -24,6 +26,9 @@ const Home = () => (
       </li>
       <li>
         <Link to="/compoundcomponentcontext">Compound Component With Context</Link>
+      </li>
+      <li>
+        <Link to="/renderprops">Render Props</Link>
       </li>
     </ul>
   </div>

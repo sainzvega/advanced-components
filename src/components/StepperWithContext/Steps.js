@@ -1,6 +1,7 @@
 import React from 'react';
 import { Power2, TweenLite } from 'gsap';
 import { TransitionGroup, Transition } from 'react-transition-group';
+import { StepperContext } from './Stepper';
 import styles from './styles';
 
 export const Step = ({ num, text }) => (
@@ -36,29 +37,42 @@ const exiting = node => {
   });
 };
 
-const Steps = ({ stage, handleClick, children }) => {
-  const childCount = React.Children.count(children);
-  const mappedChildren = React.Children.map(children, child => {
-    return (
-      stage === child.props.num && (
-        <Transition appear={true} timeout={300} onEntering={entering} onExiting={exiting}>
-          {child}
-        </Transition>
-      )
-    );
-  });
-
+const Steps = ({ children }) => {
   return (
-    <div style={styles.stagesContainer}>
-      <div style={styles.stages}>
-        <TransitionGroup>{mappedChildren}</TransitionGroup>        
-      </div>
-      <div style={styles.stageButton}>
-        <button onClick={handleClick} disabled={stage === childCount}>
-          Continue
-        </button>
-      </div>
-    </div>
+    <StepperContext.Consumer>
+      {context => {
+        let childCount = 0;
+        const { stage, onClick } = context;
+        const mappedChildren = React.Children.map(children, child => {
+          if (child.type.name === 'Step' && stage === child.props.num) {
+            childCount += 1;
+            return (
+              <Transition appear={true} timeout={300} onEntering={entering} onExiting={exiting}>
+                {child}
+              </Transition>
+            );
+          } else if (child.type.name === 'Step' && stage !== child.props.num) {
+            childCount += 1;
+            return null;
+          } else {
+            return child;
+          }
+        });
+
+        return (
+          <div style={styles.stagesContainer}>
+            <div style={styles.stages}>
+              <TransitionGroup>{mappedChildren}</TransitionGroup>
+            </div>
+            <div style={styles.stageButton}>
+              <button onClick={onClick} disabled={stage === childCount}>
+                Continue
+              </button>
+            </div>
+          </div>
+        );
+      }}
+    </StepperContext.Consumer>
   );
 };
 

@@ -1,7 +1,15 @@
 import React from 'react';
 import styles from './styles';
+import { StepperContext } from './Stepper';
 
-export const Stage = ({ stage, num }) => <div style={circleStyle(stage, num)}>{num}</div>;
+const Stage = ({ num }) => (
+  <StepperContext.Consumer>
+    {context => {
+      const { stage } = context;
+      return <div style={circleStyle(stage, num)}>{num}</div>;
+    }}
+  </StepperContext.Consumer>
+);
 
 const circleStyle = (current, circleSection) => {
   if (current === circleSection) {
@@ -12,12 +20,8 @@ const circleStyle = (current, circleSection) => {
   return styles.circle;
 };
 
-const Progress = ({ stage, children }) => {
-  const mappedChildren = React.Children.map(children, child => {
-    return React.cloneElement(child, { stage });
-  });
-
-  return <div style={styles.progressContainer}>{mappedChildren}</div>;
+const Progress = ({ children }) => {
+  return <div style={styles.progressContainer}>{children}</div>;
 };
 
-export default Progress;
+export { Stage, Progress as default };
